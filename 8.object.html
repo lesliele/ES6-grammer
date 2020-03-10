@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1.属性名表达式
+
+    let lastWord = 'last word';
+
+    const a = {
+        'first word': 'hello',
+        [lastWord]: 'world'
+    };
+
+    a['first word'] // "hello"
+    a[lastWord] // "world"
+    a['last word'] // "world"
+
+    // 2.对象的扩展运算符
+    let { x, y, ...z } = { x: 1, y: 2, a: 3, b: 4 };
+    console.log(z)
+
+    // 由于数组是特殊的对象，所以对象的扩展运算符也可以用于数组。
+    let foo = { ...['a', 'b', 'c'] };
+    console.log(foo) // {0: "a", 1: "b", 2: "c"}
+
+    // 如果扩展运算符后面不是对象，则会自动将其转为对象。
+    // 等同于 {...Object(1)}
+    console.log({...1})
+
+    // 但是，如果扩展运算符后面是字符串，它会自动转成一个类似数组的对象
+    console.log({...'hello'})
+
+    // 3.Object.is()
+    // 与严格比较运算符（===）的行为基本一致
+    // 不同之处只有两个：一是+0不等于-0，二是NaN等于自身。
+    Object.is(+0, -0) // false
+    Object.is(NaN, NaN) // true
+
+    // 4.Object.assign()
+    // 上面代码中，v1、v2、v3分别是字符串、布尔值和数值，
+    // 结果只有字符串合入目标对象（以字符数组的形式），数值和布尔值都会被忽略。这是因为只有字符串的包装对象，会产生可枚举属性。
+    // const v1 = 'abc';
+    // const v2 = true;
+    // const v3 = 10;
+
+    // const obj = Object.assign({}, v1, v2, v3);
+    // console.log(obj); // { "0": "a", "1": "b", "2": "c" }
+
+    // 5.Object.keys()，Object.values()，Object.entries()
+
+    let {keys, values, entries} = Object;
+    let obj = { a: 1, b: 2, c: 3 };
+
+    for (let key of keys(obj)) {
+        console.log(key); // 'a', 'b', 'c'
+    }
+
+    for (let value of values(obj)) {
+        console.log(value); // 1, 2, 3
+    }
+
+    for (let [key, value] of entries(obj)) {
+        console.log([key, value]); // ['a', 1], ['b', 2], ['c', 3]
+    }
+</script>
+</html>
