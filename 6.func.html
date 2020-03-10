@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1. 函数的 length 属性 指定了默认值后，length属性将失真
+    // 如果设置了默认值的参数不是尾参数，那么length属性也不再计入后面的参数了
+    console.log((function (a, b, c = 5) {}).length) // 2
+    console.log((function (a = 0, b, c) {}).length) // 0
+    console.log((function (a, b = 1, c) {}).length) // 1
+
+    // 2.作用域 一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域
+    var x = 1;
+
+    function f(x, y = x) {
+        console.log(y);
+    }
+
+    f(2) // 2
+
+    // data structure => baisc sync
+</script>
+</html>

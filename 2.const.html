@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1.const一旦声明变量，就必须立即初始化
+    // const a;
+    // 2.同样存在暂时性死区
+    // if (true) {
+    //     console.log(MAX); // ReferenceError
+    //     const MAX = 5;
+    // }
+    // 3.从 ES6 开始，全局变量将逐步与顶层对象的属性脱钩。
+    let b = 1;
+    console.log(window.b) // undefined
+</script>
+</html>

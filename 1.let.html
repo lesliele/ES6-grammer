@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1.设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域。
+    // for (let i = 0; i < 3; i++) {
+    //     let i = 'abc';
+    //     console.log(i)
+    // }
+    // 2.暂时性死区(TDZ)
+    // var temp = 'koa';
+    // if (true) {
+    //     temp = 12;
+    //     let temp;
+    // }
+    // if (true) {
+    //     // TDZ开始
+    //     tmp = 'abc'; // ReferenceError
+    //     console.log(tmp); // ReferenceError
+
+    //     let tmp; // TDZ结束
+    //     console.log(tmp); // undefined
+
+    //     tmp = 123;
+    //     console.log(tmp); // 123
+    // }
+
+    // 3.存在变量提升,所以需要块级作用域来解决问题
+    // var tmp = new Date();
+
+    // function f() {
+    //     console.log(tmp);
+    //     if (false) {
+    //         var tmp = 'hello world';
+    //     }
+    // }
+
+    // f(); // undefined
+
+    /* function f() { console.log('I am outside!'); }
+
+    (function () {
+        console.log(f)
+        if (false) {
+            // 重复声明一次函数f
+            function f() { console.log('I am inside!'); }
+        }
+
+        f();
+    }()); */
+    // 4.块级作用域与函数声明
+    // 4-1.允许在块级作用域内声明函数。
+    // 4-2.函数声明类似于var，即会提升到全局作用域或函数作用域的头部。
+    // 4-3.同时，函数声明还会提升到所在的块级作用域的头部。
+
+</script>
+</html>

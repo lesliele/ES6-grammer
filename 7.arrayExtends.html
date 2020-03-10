@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 1.替代函数的 apply 方法
+    console.log(Math.max(...[14, 3, 77]))
+
+    // 2.扩展运算符还可以将字符串转为真正的数组。
+    console.log([...'hello'])
+
+    // 3.Array.from方法用于将两类对象转为真正的数组：
+    // 类似数组的对象（array-like object）和可遍历（iterable）的对象（包括 ES6 新增的数据结构 Set 和 Map）。
+
+    let arrayLike = {
+        '0': 'a',
+        '1': 'b',
+        '2': 'c',
+        length: 3
+    };
+    // ES6的写法
+    let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']
+    console.log(arr2)
+    // 只要是部署了 Iterator 接口的数据结构，Array.from都能将其转为数组。
+
+    console.log(Array.from('hello'));
+    let namesSet = new Set(['a', 'b'])
+    console.log(Array.from(namesSet)) // ['a', 'b']
+
+    // 任何有length属性的对象，都可以通过Array.from方法转为数组，而此时扩展运算符就无法转换。
+    console.log(Array.from({ length: 3 }))
+
+    // Array.from还可以接受第二个参数，作用类似于数组的map方法，用来对每个元素进行处理，将处理后的值放入返回的数组。
+    let result = Array.from([1, 2, 3], (x) => x * x);
+    console.log(result)
+    let result2 = Array.from(arrayLike, (x) => x + 'dk');
+    console.log(result2)
+
+    // 3.数组实例的 find() 和 findIndex()
+    // 直到找出第一个返回值为true的成员，然后返回该成员。
+    console.log([1, 4, -5, 10].find((n) => n < 0))
+
+    // 数组实例的findIndex方法的用法与find方法非常类似，返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回-1
+    console.log([1, 5, 10, 15].findIndex((val, index, arr) => val > 9))
+
+    // 这两个方法都可以发现NaN，弥补了数组的indexOf方法的不足。
+    console.log([NaN, 2].indexOf(NaN))
+    console.log([NaN, 6].findIndex(y => Object.is(y, NaN)))
+
+    // 4.数组实例的 entries()，keys() 和 values()
+
+    for (let index of ['a', 'b'].keys()) {
+        console.log(index);
+    }
+    // 0
+    // 1
+
+    for (let elem of ['a', 'b'].values()) {
+        console.log(elem);
+    }
+    // 'a'
+    // 'b'
+
+    for (let [index, elem] of ['a', 'b'].entries()) {
+        console.log(index, elem);
+    }
+    // 0 "a"
+    // 1 "b"
+
+    // 5.数组实例的 includes()
+    [1, 2, 3].includes(2) // true
+    console.log([NaN].includes(NaN))
+</script>
+</html>
