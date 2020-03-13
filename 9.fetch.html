@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="handleJsonData()">上传JSON数据</button>
+</body>
+<script>
+    // 1.请求sass接口
+    // fetch('http://192.168.0.206:8066/ba_v1/goods/brandList?access-token=fcaa21bffce49898135a6692b555e7f7', {
+    //     method: 'POST',
+    //     body: {
+    //         page: 1
+    //     }
+    // }).then(function(response) {
+    //     console.log(response)
+    //     return response.json();
+    // })
+    // .then(function(myJson) {
+    //     console.log(myJson);
+    // });
+    // 2.本地搭建
+    fetch('http://10.1.1.40:3336', {
+        method: 'PUT'
+    }).then((response) => {
+        console.log(response)
+        return response.json();
+    }).then((myJson) => {
+        console.log(myJson);
+    })
+    // 3.上传JSON数据
+    var data = {username: 'example'};
+    function handleJsonData() {
+        fetch('http://10.1.1.40:3336', {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+    }
+</script>
+</html>
